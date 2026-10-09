@@ -88,13 +88,13 @@ export default function Home() {
           {featuredWorks.map((work) => (
             <div key={work.id} className="bg-card rounded-xl p-6 border border-border shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
               <div className="mb-4">
-                <span className="inline-block px-2.5 py-0.5 rounded text-xs font-medium bg-muted/10 text-muted-foreground mb-3">
+                <span className="inline-block px-2.5 py-0.5 rounded text-xs font-medium bg-muted/10 text-primary-foreground mb-3">
                   {work.category}
                 </span>
                 <h3 className="text-lg font-bold text-foreground leading-snug line-clamp-2" title={work.title}>
                   {work.title}
                 </h3>
-                {work.date && <p className="text-sm text-muted mt-2">{work.date}</p>}
+                {work.date && <p className="text-sm text-base mt-2">{work.date}</p>}
               </div>
               <p className="text-sm text-foreground/80 line-clamp-3 mb-6 flex-grow">
                 {work.description}
