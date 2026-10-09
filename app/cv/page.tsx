@@ -40,7 +40,7 @@ export default function CV() {
       <div className="bg-card rounded-xl border border-border shadow-sm p-8 sm:p-12 print:shadow-none print:border-none print:p-0">
         <div className="text-center mb-10 border-b border-border pb-8">
           <h2 className="text-3xl font-bold text-foreground mb-2">{profileData.name}</h2>
-          <p className="text-xl font-bold text-foreground mb-1">{profileData.headline}</p>
+          <p className="text-base font-normal text-foreground mb-1">{profileData.headline}</p>
         </div>
 
         <div className="space-y-10">
