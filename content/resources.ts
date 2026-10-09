@@ -15,7 +15,8 @@ export const resourcesData: Resource[] = [
     description: "This comprehensive slide deck explores sustainable urban development strategies, highlighting eco-friendly initiatives, modern technological integration, and innovative infrastructure frameworks designed to tackle pressing environmental and resource management challenges in growing cities.",
     url: "https://www.canva.com/design/DAGeP3AvdHA/vx0NZocYAjHJ0NY5FroYHw/edit", // placeholder
   },
-  id: "res-2",
+  {
+    id: "res-2",
     title: "Simulation of Biochar Effects on Soil CO₂ Flux and Diffusivity in Atrai, Naogaon, Bangladesh",
     category: "Presentations",
     description: "This presentation discusses the study findings how biochar impacts soil carbon dynamics, greenhouse gas emissions, and gas transport in agricultural systems, using an integrated dual-scale modeling approach (RothC and COMSOL Multiphysics) applied to Atrai, Naogaon, Bangladesh.",
