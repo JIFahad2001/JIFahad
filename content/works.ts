@@ -49,5 +49,12 @@ export const worksData: Work[] = [
     category: "Article",
     description: "An article detailing the environmental and health impacts of Toxoplasma gondii.",
     url:"https://sites.google.com/view/jifahad/works/articles/toxoplasma-gondii",
+  },
+  {
+    id: "work-6",
+    title: "Simulation of Biochar Effects on Soil CO2 Flux and Diffusivity in Atrai,Naogaon, Bangladesh",
+    category: "Seminar Paper",
+    description: "This seminar paper studies the effect of biochar application in different rates in a simulated scenario and evaluates its impacts on soil carbon dioxide diffusion based on Millington and Kirk's diffusion model. To simulated the evolution of CO2 gas, Rothamstad Carbon Model (WIndow's GUI version) was used with appropriate measures. The simulated results affirms the viability of biochar as a carbon sequestration method in agricultural fields. ",
+    url: "https://drive.google.com/file/d/1HfUN4qaPNfiaS8jEaz5kzZDWYjSDtC-9/view"
   }
 ];
