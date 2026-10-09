@@ -23,15 +23,15 @@ export default function CV() {
             className="inline-flex items-center justify-center rounded-md border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-muted/10 hover:text-primary"
           >
             <ExternalLink className="mr-2 h-4 w-4" />
-            Make you own CV!
+            View Original!
           </a>
           <a 
-            href="/documents/Fahad_CV.pdf" 
-            download="Fahad_CV.pdf"
+            href="/documents/Fahad_CV.html" 
+            download="Fahad_CV.html"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
           >
             <Download className="mr-2 h-4 w-4" />
-            Download CV
+            Build Your CV
           </a>
         </div>
       </div>
