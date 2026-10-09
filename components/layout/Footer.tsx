@@ -11,7 +11,7 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold text-primary mb-4">JI Fahad</h3>
             <p className="text-sm text-muted mb-4 max-w-xs">
-              Environmental science graduate interested in research, environmental problem-solving, and the communication of scientific knowledge.
+              Soil, Water and Environment graduate interested in research, environmental problem-solving, and the communication of scientific knowledge.
             </p>
           </div>
           <div>
