@@ -28,7 +28,7 @@ export default function Experience() {
                   {exp.location && <div className="text-sm text-muted mt-1">{exp.location}</div>}
                 </div>
                 <div className="flex flex-col items-start md:items-end gap-2">
-                  <span className="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-muted/10 text-muted-foreground whitespace-nowrap">
+                  <span className="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-10 text-base-foreground whitespace-nowrap">
                     {exp.startDate} — {exp.endDate}
                   </span>
                   <span className="text-xs font-medium uppercase tracking-wider text-secondary">
