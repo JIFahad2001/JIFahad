@@ -13,7 +13,7 @@ export const experienceData: Experience[] = [
   {
     id: "exp-1",
     role: "Research Podcast Host",
-    organization: "Independent",
+    organization: "Research and Analysis Institute",
     startDate: "May 2025",
     endDate: "Sep 2026",
     category: "Professional",
