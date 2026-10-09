@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search, Download, ExternalLink, FileText } from "lucide-react";
+import { Search, BookOpen, ExternalLink, FileText } from "lucide-react";
 import { Resource } from "@/content/resources";
 
 // Generate categories dynamically from data or define fixed ones
@@ -84,8 +84,8 @@ export function ResourcesClient({ initialResources }: { initialResources: Resour
                       </>
                     ) : (
                       <>
-                        <Download className="mr-2 h-4 w-4" />
-                        Download
+                        <BookOpen className="mr-2 h-4 w-4" />
+                        Read Here
                       </>
                     )}
                   </a>
