@@ -20,29 +20,34 @@ export const worksData: Work[] = [
     authors: "Chamon et al.",
     venue: "Environmental Systems Research 13:27",
     description: "This study investigated the levels of heavy metals in two date fruit varieties, Mariam and Dabash, from Bangladesh. It found concerning levels of cadmium (Cd) and nickel (Ni) exceeding maximum permissible limits, though average daily intake was not associated with immediate health risks."
+    url:"https://doi.org/10.1186/s40068-024-00354-7"
   },
   {
     id: "work-2",
     title: "Soil Health",
     category: "Article",
     description: "An article exploring the fundamental concepts of soil health and its importance in environmental science."
+    url: "https://sites.google.com/view/jifahad/works/articles/soil-health"
   },
   {
     id: "work-3",
     title: "PCOS",
     category: "Article",
     description: "An article regarding Polycystic Ovary Syndrome (PCOS)."
+    url: "https://sites.google.com/view/jifahad/works/articles/pcos"
   },
   {
     id: "work-4",
     title: "AI and Digital Art",
     category: "Article",
     description: "An article discussing the intersection of artificial intelligence and digital art creation."
+    url: "https://sites.google.com/view/jifahad/works/articles/ai-and-digital-art"
   },
   {
     id: "work-5",
     title: "Toxoplasma gondii",
     category: "Article",
     description: "An article detailing the environmental and health impacts of Toxoplasma gondii."
+    url:"https://sites.google.com/view/jifahad/works/articles/toxoplasma-gondii"
   }
 ];
