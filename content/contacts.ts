@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Globe, Briefcase } from "lucide-react";
+import { aiOrcid } from "academicons"; 
 
 export const contactData = {
   email: "jifahad2072@gmail.com",
@@ -6,7 +7,7 @@ export const contactData = {
   whatsapp: "01861758255",
   location: "126, Jamtola Masjid Road, New Chashara, 1400, Narayanganj, Bangladesh",
   linkedin: "https://www.linkedin.com/in/ji-fahad-417507182/",
-  website: "https://sites.google.com/view/jifahad/home"
+  ORCiD: "https://orcid.org/0009-0001-6411-5224",
 };
 
 export const socialLinks = [
@@ -21,8 +22,8 @@ export const socialLinks = [
     icon: Briefcase
   },
   {
-    name: "Website",
-    url: contactData.website,
-    icon: Globe
+    name: "ORCiD",
+    url: contactData.ORCiD,
+    icon: aiOrcid
   }
 ];
