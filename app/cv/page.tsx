@@ -27,7 +27,8 @@ export default function CV() {
           </a>
           <a 
             href="/documents/Fahad_CV.html" 
-            download="Fahad_CV.html"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
           >
             <Download className="mr-2 h-4 w-4" />
