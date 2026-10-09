@@ -1,4 +1,4 @@
-import { Download, ExternalLink } from "lucide-react";
+import { Download, ExternalLink, FilePlus2 } from "lucide-react";
 import { profileData } from "@/content/profile";
 import { educationData } from "@/content/education";
 import { experienceData } from "@/content/experience";
@@ -31,7 +31,7 @@ export default function CV() {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
           >
-            <Download className="mr-2 h-4 w-4" />
+            <FilePlus2 className="mr-2 h-4 w-4" />
             Build Your CV
           </a>
         </div>
