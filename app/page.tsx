@@ -88,7 +88,7 @@ export default function Home() {
           {featuredWorks.map((work) => (
             <div key={work.id} className="bg-card rounded-xl p-6 border border-border shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
               <div className="mb-4">
-                <span className="inline-block px-2.5 py-0.5 rounded text-xs font-medium bg-muted/10 text-primary-foreground mb-3">
+                <span className="inline-block px-2.5 py-0.5 rounded text-xs font-medium bg-10 text-primary-foreground mb-3">
                   {work.category}
                 </span>
                 <h3 className="text-lg font-bold text-foreground leading-snug line-clamp-2" title={work.title}>
@@ -114,7 +114,7 @@ export default function Home() {
 
       {/* Section E: Featured resources */}
       {featuredResources.length > 0 && (
-        <section className="container mx-auto px-4 sm:px-6 lg:px-8 bg-muted/5 py-12 rounded-3xl">
+        <section className="container mx-auto px-4 sm:px-6 lg:px-8 bg-5 py-12 rounded-3xl">
           <div className="flex justify-between items-end mb-6">
             <h2 className="text-2xl font-bold text-primary">Featured Resources</h2>
             <Link href="/resources" className="text-secondary font-medium hover:underline hidden sm:inline-flex items-center">
