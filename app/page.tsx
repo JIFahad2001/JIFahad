@@ -88,7 +88,7 @@ export default function Home() {
           {featuredWorks.map((work) => (
             <div key={work.id} className="bg-card rounded-xl p-6 border border-border shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
               <div className="mb-4">
-                <span className="inline-block px-2.5 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary-foreground mb-3">
+                <span className="inline-block px-2.5 py-0.5 rounded text-xs font-medium bg-primary/20 text-base-foreground mb-3">
                   {work.category}
                 </span>
                 <h3 className="text-lg font-bold text-foreground leading-snug line-clamp-2" title={work.title}>
