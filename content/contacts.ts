@@ -1,5 +1,4 @@
-import { Mail, Phone, MapPin, Globe, Briefcase } from "lucide-react";
-import { aiOrcid } from "academicons"; 
+import { Mail, Phone, MapPin, Globe, Briefcase, Link } from "lucide-react";
 
 export const contactData = {
   email: "jifahad2072@gmail.com",
@@ -24,6 +23,6 @@ export const socialLinks = [
   {
     name: "ORCiD",
     url: contactData.ORCiD,
-    icon: aiOrcid
+    icon: Link
   }
 ];
