@@ -73,8 +73,8 @@ export function ResourcesClient({ initialResources }: { initialResources: Resour
                 <div className="mt-auto pt-4 border-t border-border">
                   <a
                     href={resource.url}
-                    target={resource.isExternal ? "_blank" : undefined}
-                    rel={resource.isExternal ? "noopener noreferrer" : undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center w-full rounded-md bg-secondary/10 px-4 py-2 text-sm font-medium text-secondary transition-colors hover:bg-secondary hover:text-secondary-foreground"
                   >
                     {resource.isExternal ? (
