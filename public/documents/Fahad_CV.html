@@ -352,7 +352,7 @@
             const addEducation = () => {
                 setEducation(prev => [
                     ...prev,
-                    { id: Date.now(), degree: "SSC", group: "Science", major: "", topic: "", duration: "", board: "Dhaka", institute: "", result: "", scale: "5" }
+                    { id: Date.now(), degree: "Secondary School Certificate", group: "Science", major: "", topic: "", duration: "", board: "Dhaka", institute: "", result: "", scale: "5" }
                 ]);
             };
             const updateEducation = (id, field, value) => {
@@ -361,7 +361,7 @@
                         const updated = { ...item, [field]: value };
                         if (field === 'degree') {
                             const deg = value;
-                            const isSscHsc = ["SSC", "HSC", "SSC (BOU)", "HSC (BOU)"].includes(deg);
+                            const isSscHsc = ["Secondary School Certificate", "Higher Secondary Certificate", "SSC (BOU)", "Higher Secondary Certificate (BOU)"].includes(deg);
                             const isHigher = ["Bachelors (Hons.)", "Bachelors (Pass)", "Masters"].includes(deg);
                             const isResearch = ["PhD", "M.Phil"].includes(deg);
 
@@ -869,10 +869,10 @@ Email: \\href{mailto:${escapeLatex(ref.email)}}{${escapeLatex(ref.email)}}\\\\
                                         </div>
                                     ) : (
                                         education.map((edu, idx) => {
-                                            const isSscHsc = ["SSC", "HSC", "SSC (BOU)", "HSC (BOU)"].includes(edu.degree);
+                                            const isSscHsc = ["Secondary School Certificate", "Higher Secondary Certificate", "Secondary School Certificate (BOU)", "Higher Secondary Certificate (BOU)"].includes(edu.degree);
                                             const isHigher = ["Bachelors (Hons.)", "Bachelors (Pass)", "Masters"].includes(edu.degree);
                                             const isResearch = ["PhD", "M.Phil"].includes(edu.degree);
-                                            const isBouOrHigher = ["SSC (BOU)", "HSC (BOU)", "Bachelors (Hons.)", "Bachelors (Pass)", "Masters", "PhD", "M.Phil"].includes(edu.degree);
+                                            const isBouOrHigher = ["Secondary School Certificate (BOU)", "Higher Secondary Certificate (BOU)", "Bachelors (Hons.)", "Bachelors (Pass)", "Masters", "PhD", "M.Phil"].includes(edu.degree);
                                             const showResult = !isResearch;
                                             const showScale = isSscHsc || isHigher;
 
