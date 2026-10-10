@@ -10,9 +10,6 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-lg font-bold text-primary mb-4">JI Fahad</h3>
-            <p className="text-sm text-muted mb-4 max-w-xs">
-              Soil, Water and Environment graduate interested in research, environmental problem-solving, and the communication of scientific knowledge.
-            </p>
           </div>
           <div>
             <h4 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">Navigation</h4>
