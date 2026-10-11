@@ -48,10 +48,24 @@ npm run start
 
 ## Project Structure
 The website uses a straightforward architecture keeping content separate from layout:
-- `app/`: Next.js pages and routes (Home, About, CV, Works, Resources, Experience, Contact).
-- `components/`: Reusable React components (`layout/`, `ui/`, etc.).
-- `content/`: Structured TypeScript files containing portfolio data (`profile.ts`, `works.ts`, etc.).
+- `app/`: Next.js pages and routes (Home, About, CV, CV Builder (`/cv-builder`), Works, Resources, Experience, Contact).
+- `components/`: Reusable React components (`layout/`, `cv-builder/`, `ui/`, etc.).
+  - `components/cv-builder/`: Split-screen builder (`BuilderLayout`), dynamic form editor (`CvForm`), real-time preview canvas (`CvPreview`), and 3 academic university templates (`AcademicMinimalistTemplate`, `ModernStemTemplate`, `InternationalScholarTemplate`).
+- `content/`: Structured TypeScript files containing portfolio data (`profile.ts`, `cv-schema.ts`, `works.ts`, etc.).
 - `public/`: Static assets such as images and the `documents/` folder for the CV file.
+
+## Dynamic CV / Resume Builder (`/cv-builder`)
+The portfolio includes an academic and professional CV Builder modeled after standards from **Stanford, MIT, Peking University, and University of Sydney**:
+- **Templates:**
+  - *Minimalist Academic:* Stanford / Ivy League standard with centered header, formal rules, and classic serif typography.
+  - *Modern STEM:* MIT / Caltech standard with modern sans-serif typography, accent bars, and structured technical skills matrix.
+  - *International Scholar:* Sydney / Peking University standard with sophisticated typography and citations emphasis.
+- **Real-Time Live Preview:** Side-by-side editing on desktop, with an adaptive mobile tab switcher.
+- **Dynamic Field Management:** Real-time adding and removing of degrees, appointments, publications, projects, skills, activities, and honors.
+- **Exporting Options:** 
+  - **Export to PDF:** Perfectly scaled vector PDF generation via browser print styles (`@media print` isolating the A4 canvas).
+  - **Save / Import JSON:** Back up your CV data to a structured JSON file or load an existing JSON file at any time.
+  - **Local Persistence:** Changes are automatically cached in `localStorage`.
 
 ## Updating Content
 

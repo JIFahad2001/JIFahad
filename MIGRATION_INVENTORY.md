@@ -14,5 +14,5 @@
 | Presentations | /view/jifahad/presentations | Slides and presentations | Resources | Migrated | |
 | Resources | /view/jifahad/resources | Additional materials | Resources | Migrated | |
 | Contacts | /view/jifahad/contacts | Contact info | Contact | Migrated | Verified from CV PDF |
-| CV Builder | /view/jifahad/cv-builder | CV view | CV | Migrated | CV content merged from attached PDF |
+| CV Builder | /view/jifahad/cv-builder | CV view & builder tool | CV (`/cv`), CV Builder (`/cv-builder`) | Migrated & Enhanced | Full interactive dynamic builder with live preview, 3 prestige academic templates, and PDF/JSON export |
 | Attached PDF | Desktop/cv_generator_application (1).html | CV details (education, experience, publications, etc) | CV, Experience, Works | Migrated | |

@@ -1,4 +1,5 @@
-import { Download, ExternalLink, FilePlus2 } from "lucide-react";
+import Link from "next/link";
+import { Download, ExternalLink, Sparkles, FilePlus2 } from "lucide-react";
 import { profileData } from "@/content/profile";
 import { educationData } from "@/content/education";
 import { experienceData } from "@/content/experience";
@@ -15,7 +16,14 @@ export default function CV() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <h1 className="text-3xl sm:text-4xl font-bold text-primary">Curriculum Vitae</h1>
         
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/cv-builder"
+            className="inline-flex items-center justify-center rounded-md bg-secondary text-secondary-foreground px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-secondary/90"
+          >
+            <Sparkles className="mr-2 h-4 w-4 text-accent" />
+            Launch CV Builder
+          </Link>
           <a 
             href="/documents/Fahad_CV.pdf" 
             target="_blank" 

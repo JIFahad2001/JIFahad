@@ -4,6 +4,7 @@
 - `/` (Home)
 - `/about` (About)
 - `/cv` (CV)
+- `/cv-builder` (Dynamic CV / Resume Builder)
 - `/works` (Works)
 - `/resources` (Resources)
 - `/experience` (Professional Experience)
