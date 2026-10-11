@@ -22,6 +22,28 @@
   --border: #e2e8f0;
 }
 
+.dark {
+  --background: #0d1614;
+  --foreground: #eef2f1;
+  
+  --primary: #2fa58e;
+  --primary-foreground: #0d1614;
+  
+  --secondary: #4db3a0;
+  --secondary-foreground: #0d1614;
+  
+  --accent: #d8ba78;
+  --accent-foreground: #0d1614;
+  
+  --muted: #94a39f;
+  --muted-foreground: #cbd5e1;
+  
+  --card: #14221f;
+  --card-foreground: #eef2f1;
+  
+  --border: #203530;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -37,8 +59,12 @@
   --color-card-foreground: var(--card-foreground);
   --color-border: var(--border);
 
-  --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -46,4 +72,100 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Page entrance animations */
+main {
+  animation: pageFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bulletproof Print Rules for PDF Exports */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Completely hide all UI elements outside the CV document */
+  .site-header,
+  .site-footer,
+  #builder-controls,
+  #form-pane,
+  header,
+  footer,
+  nav,
+  button,
+  .print\:hidden,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset all outer containers so nothing is constrained or clipped */
+  body > div,
+  main,
+  #builder-workspace,
+  #builder-grid,
+  #preview-pane,
+  #preview-canvas-container {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  /* The actual CV paper container */
+  #cv-print-area {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+    border: none !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  #cv-print-area * {
+    visibility: visible !important;
+  }
+
+  #cv-print-area .cv-header,
+  #cv-print-area .cv-header * {
+    display: block !important;
+    visibility: visible !important;
+  }
 }

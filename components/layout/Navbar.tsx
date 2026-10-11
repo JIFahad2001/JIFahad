@@ -7,6 +7,8 @@ import { Menu, X } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+import { ThemeToggle } from "./ThemeToggle";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -35,30 +37,36 @@ export function Navbar() {
               JI Fahad
             </Link>
           </div>
-          <nav className="hidden md:block">
-            <ul className="flex space-x-8">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className={cn(
-                        "text-sm font-medium transition-colors hover:text-primary",
-                        isActive ? "text-primary border-b-2 border-accent pb-1" : "text-muted"
-                      )}
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-          <div className="md:hidden">
+          <div className="hidden md:flex items-center space-x-6">
+            <nav>
+              <ul className="flex space-x-6">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "text-sm font-medium transition-colors hover:text-primary",
+                          isActive ? "text-primary border-b-2 border-accent pb-1 font-semibold" : "text-muted"
+                        )}
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+            <div className="pl-2 border-l border-border/60">
+              <ThemeToggle />
+            </div>
+          </div>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center rounded-md p-2 text-muted hover:bg-gray-100 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+              className="inline-flex items-center justify-center rounded-md p-2 text-muted hover:bg-muted/10 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
               aria-expanded={isOpen}
             >
               <span className="sr-only">Open main menu</span>

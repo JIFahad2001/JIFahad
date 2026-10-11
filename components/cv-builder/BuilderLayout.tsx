@@ -14,6 +14,7 @@ import {
   CheckCircle2,
   FileText,
   Sparkles,
+  Trash2,
 } from "lucide-react";
 
 export function BuilderLayout() {
@@ -137,47 +138,6 @@ export function BuilderLayout() {
 
   return (
     <div className="flex flex-col h-[calc(100vh-4rem)] overflow-hidden">
-      {/* Print-specific style block to isolate CV paper during window.print() */}
-      <style jsx global>{`
-        @media print {
-          @page {
-            size: A4;
-            margin: 10mm;
-          }
-          body {
-            background: white !important;
-            color: black !important;
-          }
-          body * {
-            visibility: hidden;
-          }
-          .site-header, .site-navbar, .site-footer, footer, nav, .print\\:hidden, #builder-controls {
-            display: none !important;
-          }
-          #cv-print-area, #cv-print-area * {
-            visibility: visible !important;
-          }
-          #cv-print-area {
-            position: absolute !important;
-            left: 0 !important;
-            top: 0 !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            box-shadow: none !important;
-            transform: none !important;
-            background: white !important;
-            color: black !important;
-          }
-          #cv-print-area .cv-header,
-          #cv-print-area .cv-header * {
-            display: block !important;
-            visibility: visible !important;
-          }
-        }
-      `}</style>
-
       {/* Top Action Bar */}
       <div id="builder-controls" className="shrink-0 border-b border-border bg-card/60 backdrop-blur px-4 sm:px-6 py-2.5 print:hidden">
         <div className="container mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
@@ -255,9 +215,19 @@ export function BuilderLayout() {
 
             <button
               type="button"
+              onClick={handleClear}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-red-200 dark:border-red-900/60 bg-red-50/60 dark:bg-red-950/30 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-100/70 dark:hover:bg-red-900/40 transition-colors"
+              title="Clear all fields to start with an empty blank CV"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              <span>Clear Form</span>
+            </button>
+
+            <button
+              type="button"
               onClick={handleResetSample}
               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-border bg-background text-xs font-medium text-muted hover:text-foreground hover:bg-muted/10 transition-colors"
-              title="Reset back to sample academic data"
+              title="Reset back to sample academic placeholder data"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Sample Data</span>
@@ -266,7 +236,7 @@ export function BuilderLayout() {
             <button
               type="button"
               onClick={handleExportPdf}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold shadow hover:bg-primary/90 transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold shadow hover:bg-primary/90 transition-all cursor-pointer"
               title="Export high-resolution ATS-optimized PDF"
             >
               <Download className="w-4 h-4" />
@@ -287,10 +257,11 @@ export function BuilderLayout() {
       </div>
 
       {/* Main Split-Screen Workspace */}
-      <div className="flex-1 min-h-0 container mx-auto px-4 sm:px-6 py-3">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full min-h-0">
+      <div id="builder-workspace" className="flex-1 min-h-0 container mx-auto px-4 sm:px-6 py-3">
+        <div id="builder-grid" className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full min-h-0">
           {/* Left Pane: Dynamic Form Editor */}
           <div
+            id="form-pane"
             className={`lg:col-span-6 h-full min-h-0 ${
               mobileTab === "edit" ? "block" : "hidden lg:block"
             }`}
@@ -300,6 +271,7 @@ export function BuilderLayout() {
 
           {/* Right Pane: Live Document Preview */}
           <div
+            id="preview-pane"
             className={`lg:col-span-6 h-full min-h-0 ${
               mobileTab === "preview" ? "block" : "hidden lg:block"
             }`}

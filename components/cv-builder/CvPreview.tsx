@@ -72,7 +72,7 @@ export function CvPreview({ data }: CvPreviewProps) {
       </div>
 
       {/* Preview Canvas Area */}
-      <div className="flex-1 overflow-auto p-4 sm:p-8 flex justify-center items-start">
+      <div id="preview-canvas-container" className="flex-1 overflow-auto p-4 sm:p-8 flex justify-center items-start">
         <div
           id="cv-print-area"
           style={{
