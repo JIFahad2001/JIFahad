@@ -6,7 +6,7 @@ interface TemplateProps {
 }
 
 export function InternationalScholarTemplate({ data }: TemplateProps) {
-  const { personalInfo, education, experience, publications, projects, skills, extracurriculars, awards, settings } = data;
+  const { personalInfo, education, experience, publications, projects, skills, extracurriculars, awards, references, settings } = data;
 
   const accentColor = settings.accentColor || "#173F35";
 
@@ -27,7 +27,7 @@ export function InternationalScholarTemplate({ data }: TemplateProps) {
   return (
     <div className={`w-full max-w-[210mm] mx-auto bg-white text-zinc-900 p-8 sm:p-12 print:p-0 ${fontClass} ${spacingClass}`}>
       {/* Header (Sydney / Peking University Style with sophisticated elegance) */}
-      <header className="pb-4 mb-4 border-b-2" style={{ borderColor: accentColor }}>
+      <div className="cv-header pb-4 mb-4 border-b-2" style={{ borderColor: accentColor }}>
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-serif">
@@ -59,7 +59,7 @@ export function InternationalScholarTemplate({ data }: TemplateProps) {
             )}
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Executive Academic Summary */}
       {personalInfo.summary && (
@@ -257,6 +257,34 @@ export function InternationalScholarTemplate({ data }: TemplateProps) {
             {extracurriculars.map((item) => (
               <div key={item.id} className="text-zinc-700">
                 <span className="font-bold text-zinc-900">{item.role}</span>, {item.organization} ({item.date}) &mdash; {item.description}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* References */}
+      {references && references.length > 0 && (
+        <section>
+          <div className="flex items-center gap-2 mb-2">
+            <h2 className="text-xs font-bold uppercase tracking-widest font-sans" style={{ color: accentColor }}>
+              Referees & Academic Supervisors
+            </h2>
+            <div className="flex-1 h-[1px] bg-zinc-200"></div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            {references.map((ref) => (
+              <div key={ref.id} className="pl-3 border-l-2 space-y-0.5" style={{ borderColor: accentColor }}>
+                <p className="font-bold text-zinc-900 font-serif">{ref.name}</p>
+                <p className="text-zinc-700">{ref.title}</p>
+                <p className="text-zinc-600">{ref.institution}</p>
+                {ref.relationship && (
+                  <p className="text-[11px] text-zinc-500 font-sans">Role: {ref.relationship}</p>
+                )}
+                <div className="text-[11px] text-zinc-600 font-sans pt-1">
+                  {ref.email && <div>Email: {ref.email}</div>}
+                  {ref.phone && <div>Phone: {ref.phone}</div>}
+                </div>
               </div>
             ))}
           </div>

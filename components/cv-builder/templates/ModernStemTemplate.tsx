@@ -7,7 +7,7 @@ interface TemplateProps {
 }
 
 export function ModernStemTemplate({ data }: TemplateProps) {
-  const { personalInfo, education, experience, publications, projects, skills, extracurriculars, awards, settings } = data;
+  const { personalInfo, education, experience, publications, projects, skills, extracurriculars, awards, references, settings } = data;
 
   const accentColor = settings.accentColor || "#173F35";
 
@@ -28,7 +28,7 @@ export function ModernStemTemplate({ data }: TemplateProps) {
   return (
     <div className={`w-full max-w-[210mm] mx-auto bg-white text-slate-800 p-8 sm:p-12 print:p-0 ${fontClass} ${spacingClass}`}>
       {/* Header (MIT / Caltech Modern STEM Header) */}
-      <header className="border-b-2 pb-4" style={{ borderColor: accentColor }}>
+      <div className="cv-header border-b-2 pb-4" style={{ borderColor: accentColor }}>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight" style={{ color: accentColor }}>
@@ -81,7 +81,7 @@ export function ModernStemTemplate({ data }: TemplateProps) {
             )}
           </div>
         )}
-      </header>
+      </div>
 
       {/* Summary */}
       {personalInfo.summary && (
@@ -246,7 +246,7 @@ export function ModernStemTemplate({ data }: TemplateProps) {
 
       {/* Extracurricular & Awards Grid */}
       {(extracurriculars.length > 0 || awards.length > 0) && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
           {extracurriculars.length > 0 && (
             <section>
               <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-2">
@@ -286,6 +286,32 @@ export function ModernStemTemplate({ data }: TemplateProps) {
             </section>
           )}
         </div>
+      )}
+
+      {/* References */}
+      {references && references.length > 0 && (
+        <section className="pt-1">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: accentColor }}></span>
+            References & Supervisors
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            {references.map((ref) => (
+              <div key={ref.id} className="bg-slate-50 p-3 rounded-lg border border-slate-200/80 space-y-1">
+                <p className="font-bold text-slate-900">{ref.name}</p>
+                <p className="text-slate-600 font-medium">{ref.title}</p>
+                <p className="text-slate-500 text-[11.5px]">{ref.institution}</p>
+                {ref.relationship && (
+                  <p className="text-[11px] text-slate-500 italic mt-0.5">Role: {ref.relationship}</p>
+                )}
+                <div className="text-[11.5px] text-slate-600 pt-1 border-t border-slate-200/60 mt-1">
+                  {ref.email && <div>Email: <a href={`mailto:${ref.email}`} className="text-blue-600 hover:underline">{ref.email}</a></div>}
+                  {ref.phone && <div>Phone: {ref.phone}</div>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
     </div>
   );

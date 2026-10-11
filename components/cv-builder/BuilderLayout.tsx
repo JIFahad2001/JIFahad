@@ -121,6 +121,7 @@ export function BuilderLayout() {
         skills: [],
         extracurriculars: [],
         awards: [],
+        references: [],
         settings: {
           template: "academic-minimalist",
           fontFamily: "serif",
@@ -135,27 +136,31 @@ export function BuilderLayout() {
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-4rem)]">
+    <div className="flex flex-col h-[calc(100vh-4rem)] overflow-hidden">
       {/* Print-specific style block to isolate CV paper during window.print() */}
       <style jsx global>{`
         @media print {
           @page {
             size: A4;
-            margin: 12mm;
+            margin: 10mm;
+          }
+          body {
+            background: white !important;
+            color: black !important;
           }
           body * {
             visibility: hidden;
           }
-          header, footer, nav, .print\\:hidden, #builder-controls {
+          .site-header, .site-navbar, .site-footer, footer, nav, .print\\:hidden, #builder-controls {
             display: none !important;
           }
           #cv-print-area, #cv-print-area * {
-            visibility: visible;
+            visibility: visible !important;
           }
           #cv-print-area {
-            position: absolute;
-            left: 0;
-            top: 0;
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
             width: 100% !important;
             max-width: 100% !important;
             margin: 0 !important;
@@ -165,11 +170,16 @@ export function BuilderLayout() {
             background: white !important;
             color: black !important;
           }
+          #cv-print-area .cv-header,
+          #cv-print-area .cv-header * {
+            display: block !important;
+            visibility: visible !important;
+          }
         }
       `}</style>
 
       {/* Top Action Bar */}
-      <div id="builder-controls" className="border-b border-border bg-card/60 backdrop-blur px-4 sm:px-6 py-3 print:hidden">
+      <div id="builder-controls" className="shrink-0 border-b border-border bg-card/60 backdrop-blur px-4 sm:px-6 py-2.5 print:hidden">
         <div className="container mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="bg-primary/10 p-2 rounded-lg text-primary">
@@ -277,11 +287,11 @@ export function BuilderLayout() {
       </div>
 
       {/* Main Split-Screen Workspace */}
-      <div className="flex-1 container mx-auto px-4 sm:px-6 py-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-9.5rem)]">
+      <div className="flex-1 min-h-0 container mx-auto px-4 sm:px-6 py-3">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full min-h-0">
           {/* Left Pane: Dynamic Form Editor */}
           <div
-            className={`lg:col-span-6 h-full ${
+            className={`lg:col-span-6 h-full min-h-0 ${
               mobileTab === "edit" ? "block" : "hidden lg:block"
             }`}
           >
@@ -290,7 +300,7 @@ export function BuilderLayout() {
 
           {/* Right Pane: Live Document Preview */}
           <div
-            className={`lg:col-span-6 h-full ${
+            className={`lg:col-span-6 h-full min-h-0 ${
               mobileTab === "preview" ? "block" : "hidden lg:block"
             }`}
           >

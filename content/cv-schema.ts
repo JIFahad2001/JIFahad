@@ -71,6 +71,16 @@ export interface AwardItem {
   description?: string;
 }
 
+export interface ReferenceItem {
+  id: string;
+  name: string;
+  title: string;
+  institution: string;
+  email: string;
+  phone?: string;
+  relationship?: string;
+}
+
 export interface CvData {
   personalInfo: {
     fullName: string;
@@ -91,6 +101,7 @@ export interface CvData {
   skills: SkillCategory[];
   extracurriculars: ExtracurricularItem[];
   awards: AwardItem[];
+  references?: ReferenceItem[];
   settings: {
     template: TemplateStyle;
     fontFamily: FontFamilyStyle;
@@ -271,6 +282,26 @@ export const sampleCvData: CvData = {
       issuer: "Dhaka Education Board",
       year: "2021",
       description: "Awarded for achieving GPA 5.00/5.00 in the Higher Secondary Certificate examination."
+    }
+  ],
+  references: [
+    {
+      id: "ref-1",
+      name: "Prof. Dr. [Academic Supervisor Name]",
+      title: "Professor & Academic Supervisor",
+      institution: "Department of Soil, Water and Environment, University of Dhaka",
+      email: "supervisor@du.ac.bd",
+      phone: "+880 2-9661900",
+      relationship: "Undergraduate Academic Advisor & Thesis Mentor"
+    },
+    {
+      id: "ref-2",
+      name: "Dr. [Co-Supervisor / Research Collaborator]",
+      title: "Associate Professor",
+      institution: "Faculty of Biological Sciences, University of Dhaka",
+      email: "mentor@du.ac.bd",
+      phone: "+880 1812-000000",
+      relationship: "Research Co-Supervisor & Senior Colleague"
     }
   ],
   settings: {

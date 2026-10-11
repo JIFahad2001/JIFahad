@@ -10,6 +10,7 @@ import {
   SkillCategory,
   ExtracurricularItem,
   AwardItem,
+  ReferenceItem,
   TemplateStyle,
   FontFamilyStyle,
   SpacingStyle,
@@ -23,11 +24,14 @@ import {
   Wrench,
   Award,
   Users,
+  BookUser,
   Settings,
   Plus,
   Trash2,
   ChevronDown,
   ChevronUp,
+  ArrowLeft,
+  ArrowRight,
 } from "lucide-react";
 
 interface CvFormProps {
@@ -252,6 +256,34 @@ export function CvForm({ data, onChange }: CvFormProps) {
     });
   };
 
+  // References Helpers
+  const addReference = () => {
+    const newItem: ReferenceItem = {
+      id: `ref-${Date.now()}`,
+      name: "",
+      title: "",
+      institution: "",
+      email: "",
+      phone: "",
+      relationship: "",
+    };
+    onChange({ ...data, references: [...(data.references || []), newItem] });
+  };
+
+  const updateReference = (id: string, field: keyof ReferenceItem, val: any) => {
+    onChange({
+      ...data,
+      references: (data.references || []).map((item) => (item.id === id ? { ...item, [field]: val } : item)),
+    });
+  };
+
+  const removeReference = (id: string) => {
+    onChange({
+      ...data,
+      references: (data.references || []).filter((item) => item.id !== id),
+    });
+  };
+
   const navSections = [
     { id: "personal", label: "Personal Info", icon: User },
     { id: "education", label: "Education", icon: GraduationCap },
@@ -259,6 +291,7 @@ export function CvForm({ data, onChange }: CvFormProps) {
     { id: "publications", label: "Publications", icon: BookOpen },
     { id: "projects", label: "Projects", icon: FolderGit2 },
     { id: "skills", label: "Skills", icon: Wrench },
+    { id: "references", label: "References", icon: BookUser },
     { id: "extracurriculars", label: "Leadership", icon: Users },
     { id: "awards", label: "Awards", icon: Award },
     { id: "settings", label: "Styles & Layout", icon: Settings },
@@ -266,8 +299,8 @@ export function CvForm({ data, onChange }: CvFormProps) {
 
   return (
     <div className="flex flex-col h-full bg-card border border-border rounded-xl shadow-sm overflow-hidden">
-      {/* Tab Navigation header */}
-      <div className="flex overflow-x-auto p-2 bg-muted/10 border-b border-border gap-1 scrollbar-none">
+      {/* Tab Navigation header - wrapping pills so all 10 sections are directly visible and accessible */}
+      <div className="flex flex-wrap p-2.5 bg-muted/10 border-b border-border gap-1.5">
         {navSections.map((sec) => {
           const Icon = sec.icon;
           const isActive = activeSection === sec.id;
@@ -275,10 +308,10 @@ export function CvForm({ data, onChange }: CvFormProps) {
             <button
               key={sec.id}
               onClick={() => setActiveSection(sec.id)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 isActive
-                  ? "bg-primary text-primary-foreground shadow-xs"
-                  : "text-muted hover:text-foreground hover:bg-muted/15"
+                  ? "bg-primary text-primary-foreground shadow-xs font-semibold"
+                  : "bg-background/80 border border-border/60 text-muted hover:text-foreground hover:bg-muted/20"
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -895,6 +928,120 @@ export function CvForm({ data, onChange }: CvFormProps) {
           </div>
         )}
 
+        {/* REFERENCES */}
+        {activeSection === "references" && (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center border-b border-border pb-3">
+              <div>
+                <h3 className="text-base font-bold text-foreground">References & Referees</h3>
+                <p className="text-xs text-muted">Academic advisors, thesis supervisors, and professional mentors</p>
+              </div>
+              <button
+                type="button"
+                onClick={addReference}
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-all shadow-xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                Add Reference
+              </button>
+            </div>
+
+            {(!data.references || data.references.length === 0) ? (
+              <div className="p-8 text-center border border-dashed border-border rounded-xl">
+                <BookUser className="w-8 h-8 text-muted mx-auto mb-2 opacity-50" />
+                <p className="text-xs text-muted font-medium">No references added yet.</p>
+                <button
+                  type="button"
+                  onClick={addReference}
+                  className="mt-3 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-all"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  Add First Reference
+                </button>
+              </div>
+            ) : (
+              (data.references || []).map((ref, idx) => (
+                <div key={ref.id} className="p-4 rounded-xl border border-border bg-background space-y-3 relative group">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-bold text-primary">#{idx + 1} Reference</span>
+                    <button
+                      type="button"
+                      onClick={() => removeReference(ref.id)}
+                      className="text-red-500 hover:text-red-700 p-1 rounded hover:bg-red-50 transition-colors"
+                      title="Remove reference"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-medium text-foreground mb-1">Full Name & Title</label>
+                      <input
+                        type="text"
+                        value={ref.name}
+                        onChange={(e) => updateReference(ref.id, "name", e.target.value)}
+                        placeholder="e.g. Prof. Dr. [Full Name]"
+                        className="w-full text-xs px-3 py-2 rounded border border-border bg-card focus:outline-none focus:ring-1 focus:ring-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-foreground mb-1">Position / Designation</label>
+                      <input
+                        type="text"
+                        value={ref.title}
+                        onChange={(e) => updateReference(ref.id, "title", e.target.value)}
+                        placeholder="e.g. Professor & Chairman"
+                        className="w-full text-xs px-3 py-2 rounded border border-border bg-card focus:outline-none focus:ring-1 focus:ring-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-foreground mb-1">Department & Institution</label>
+                      <input
+                        type="text"
+                        value={ref.institution}
+                        onChange={(e) => updateReference(ref.id, "institution", e.target.value)}
+                        placeholder="e.g. Dept of Soil, Water & Environment, University of Dhaka"
+                        className="w-full text-xs px-3 py-2 rounded border border-border bg-card focus:outline-none focus:ring-1 focus:ring-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-foreground mb-1">Academic Relationship</label>
+                      <input
+                        type="text"
+                        value={ref.relationship || ""}
+                        onChange={(e) => updateReference(ref.id, "relationship", e.target.value)}
+                        placeholder="e.g. Thesis Supervisor / Former Mentor"
+                        className="w-full text-xs px-3 py-2 rounded border border-border bg-card focus:outline-none focus:ring-1 focus:ring-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-foreground mb-1">Email Address</label>
+                      <input
+                        type="email"
+                        value={ref.email}
+                        onChange={(e) => updateReference(ref.id, "email", e.target.value)}
+                        placeholder="e.g. supervisor@du.ac.bd"
+                        className="w-full text-xs px-3 py-2 rounded border border-border bg-card focus:outline-none focus:ring-1 focus:ring-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-foreground mb-1">Phone Number (Optional)</label>
+                      <input
+                        type="text"
+                        value={ref.phone || ""}
+                        onChange={(e) => updateReference(ref.id, "phone", e.target.value)}
+                        placeholder="e.g. (+880) 17..."
+                        className="w-full text-xs px-3 py-2 rounded border border-border bg-card focus:outline-none focus:ring-1 focus:ring-primary"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        )}
+
         {/* LEADERSHIP & EXTRACURRICULARS */}
         {activeSection === "extracurriculars" && (
           <div className="space-y-4">
@@ -1151,6 +1298,39 @@ export function CvForm({ data, onChange }: CvFormProps) {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Form Navigation Step Footer */}
+      <div className="px-4 py-2.5 border-t border-border bg-muted/5 flex items-center justify-between text-xs">
+        <button
+          type="button"
+          onClick={() => {
+            const currIdx = navSections.findIndex((s) => s.id === activeSection);
+            if (currIdx > 0) setActiveSection(navSections[currIdx - 1].id);
+          }}
+          disabled={activeSection === navSections[0].id}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-background hover:bg-muted/15 disabled:opacity-40 disabled:pointer-events-none transition-all font-medium text-foreground"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Previous</span>
+        </button>
+
+        <span className="text-muted text-[11px] font-medium hidden sm:inline">
+          Section {navSections.findIndex((s) => s.id === activeSection) + 1} of {navSections.length}
+        </span>
+
+        <button
+          type="button"
+          onClick={() => {
+            const currIdx = navSections.findIndex((s) => s.id === activeSection);
+            if (currIdx < navSections.length - 1) setActiveSection(navSections[currIdx + 1].id);
+          }}
+          disabled={activeSection === navSections[navSections.length - 1].id}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:pointer-events-none transition-all font-medium shadow-xs"
+        >
+          <span>Next</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </button>
       </div>
     </div>
   );

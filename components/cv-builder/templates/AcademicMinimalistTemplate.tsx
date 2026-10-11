@@ -6,7 +6,7 @@ interface TemplateProps {
 }
 
 export function AcademicMinimalistTemplate({ data }: TemplateProps) {
-  const { personalInfo, education, experience, publications, projects, skills, extracurriculars, awards, settings } = data;
+  const { personalInfo, education, experience, publications, projects, skills, extracurriculars, awards, references, settings } = data;
 
   const fontClass =
     settings.fontFamily === "serif"
@@ -25,7 +25,7 @@ export function AcademicMinimalistTemplate({ data }: TemplateProps) {
   return (
     <div className={`w-full max-w-[210mm] mx-auto bg-white text-gray-900 p-8 sm:p-12 print:p-0 ${fontClass} ${spacingClass}`}>
       {/* Header (Stanford/Ivy Centered Header) */}
-      <header className="text-center pb-3 border-b-2 border-gray-900 mb-4">
+      <div className="cv-header text-center pb-3 border-b-2 border-gray-900 mb-4">
         <h1 className="text-2xl sm:text-3xl font-bold uppercase tracking-wider text-gray-900">
           {personalInfo.fullName || "Your Full Name"}
         </h1>
@@ -63,7 +63,7 @@ export function AcademicMinimalistTemplate({ data }: TemplateProps) {
           )}
           {personalInfo.orcid && <span>• ORCID: {personalInfo.orcid}</span>}
         </div>
-      </header>
+      </div>
 
       {/* Summary / Research Statement */}
       {personalInfo.summary && (
@@ -269,6 +269,31 @@ export function AcademicMinimalistTemplate({ data }: TemplateProps) {
                   {aw.description && <span className="text-gray-600 block text-[11px]">{aw.description}</span>}
                 </div>
                 <span className="text-gray-600 font-sans font-medium shrink-0 ml-2">{aw.year}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* References */}
+      {references && references.length > 0 && (
+        <section>
+          <h2 className="text-sm font-bold uppercase tracking-widest text-gray-900 border-b border-gray-300 pb-0.5 mb-2">
+            Academic & Professional References
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            {references.map((ref) => (
+              <div key={ref.id} className="space-y-0.5">
+                <p className="font-bold text-gray-900">{ref.name}</p>
+                <p className="italic text-gray-700">{ref.title}</p>
+                <p className="text-gray-800">{ref.institution}</p>
+                {ref.relationship && (
+                  <p className="text-[11px] text-gray-600 font-sans">Role: {ref.relationship}</p>
+                )}
+                <div className="text-[11px] text-gray-600 font-sans pt-0.5">
+                  {ref.email && <div>Email: {ref.email}</div>}
+                  {ref.phone && <div>Phone: {ref.phone}</div>}
+                </div>
               </div>
             ))}
           </div>

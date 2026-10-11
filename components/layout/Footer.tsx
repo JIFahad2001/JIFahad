@@ -1,11 +1,20 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { contactData, socialLinks } from "@/content/contacts";
 
 export function Footer() {
+  const pathname = usePathname();
   const currentYear = 2026;
 
+  // Do not render marketing footer on the full-screen CV Builder app
+  if (pathname === "/cv-builder") {
+    return null;
+  }
+
   return (
-    <footer className="border-t border-border bg-background py-12">
+    <footer className="site-footer border-t border-border bg-background py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
