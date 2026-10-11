@@ -24,6 +24,36 @@ export function InternationalScholarTemplate({ data }: TemplateProps) {
       ? "space-y-6 text-[13.5px] leading-relaxed"
       : "space-y-4.5 text-[12.5px] leading-normal";
 
+  const contactLines: React.ReactNode[] = [];
+  if (personalInfo.email) {
+    contactLines.push(
+      <a key="email" href={`mailto:${personalInfo.email}`} className="hover:underline text-zinc-800">
+        {personalInfo.email}
+      </a>
+    );
+  }
+  const phoneAndLoc = [personalInfo.phone, personalInfo.location].filter(Boolean).join(" • ");
+  if (phoneAndLoc) {
+    contactLines.push(<span key="phoneloc">{phoneAndLoc}</span>);
+  }
+  if (personalInfo.website) {
+    contactLines.push(
+      <a key="website" href={personalInfo.website} target="_blank" rel="noreferrer" className="hover:underline text-zinc-800">
+        {personalInfo.website.replace(/^https?:\/\//, "")}
+      </a>
+    );
+  }
+  if (personalInfo.linkedin) {
+    contactLines.push(
+      <a key="linkedin" href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="hover:underline text-zinc-800">
+        LinkedIn Profile
+      </a>
+    );
+  }
+  if (personalInfo.orcid) {
+    contactLines.push(<span key="orcid">ORCID: {personalInfo.orcid}</span>);
+  }
+
   return (
     <div className={`w-full max-w-[210mm] mx-auto bg-white text-zinc-900 p-8 sm:p-12 print:p-0 ${fontClass} ${spacingClass}`}>
       {/* Header (Sydney / Peking University Style with sophisticated elegance) */}
@@ -40,24 +70,13 @@ export function InternationalScholarTemplate({ data }: TemplateProps) {
             )}
           </div>
 
-          <div className="text-xs text-zinc-600 space-y-0.5 md:text-right font-sans">
-            <div>{personalInfo.email}</div>
-            <div>{personalInfo.phone} &bull; {personalInfo.location}</div>
-            {personalInfo.website && (
-              <div>
-                <a href={personalInfo.website} target="_blank" rel="noreferrer" className="hover:underline text-zinc-800">
-                  {personalInfo.website.replace(/^https?:\/\//, "")}
-                </a>
-              </div>
-            )}
-            {personalInfo.linkedin && (
-              <div>
-                <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="hover:underline text-zinc-800">
-                  {personalInfo.linkedin}
-                </a>
-              </div>
-            )}
-          </div>
+          {contactLines.length > 0 && (
+            <div className="text-xs text-zinc-600 space-y-0.5 md:text-right font-sans">
+              {contactLines.map((line, idx) => (
+                <div key={idx} className="whitespace-nowrap">{line}</div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

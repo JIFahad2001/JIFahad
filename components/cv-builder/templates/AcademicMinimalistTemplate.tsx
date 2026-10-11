@@ -22,6 +22,38 @@ export function AcademicMinimalistTemplate({ data }: TemplateProps) {
       ? "space-y-5 text-[13.5px] leading-relaxed"
       : "space-y-4 text-[13px] leading-normal";
 
+  const contactItems: React.ReactNode[] = [];
+  if (personalInfo.email) {
+    contactItems.push(
+      <a key="email" href={`mailto:${personalInfo.email}`} className="hover:underline text-gray-800">
+        {personalInfo.email}
+      </a>
+    );
+  }
+  if (personalInfo.phone) {
+    contactItems.push(<span key="phone">{personalInfo.phone}</span>);
+  }
+  if (personalInfo.location) {
+    contactItems.push(<span key="location">{personalInfo.location}</span>);
+  }
+  if (personalInfo.website) {
+    contactItems.push(
+      <a key="website" href={personalInfo.website} target="_blank" rel="noreferrer" className="hover:underline text-gray-800">
+        {personalInfo.website.replace(/^https?:\/\//, "")}
+      </a>
+    );
+  }
+  if (personalInfo.linkedin) {
+    contactItems.push(
+      <a key="linkedin" href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="hover:underline text-gray-800">
+        LinkedIn
+      </a>
+    );
+  }
+  if (personalInfo.orcid) {
+    contactItems.push(<span key="orcid">ORCID: {personalInfo.orcid}</span>);
+  }
+
   return (
     <div className={`w-full max-w-[210mm] mx-auto bg-white text-gray-900 p-8 sm:p-12 print:p-0 ${fontClass} ${spacingClass}`}>
       {/* Header (Stanford/Ivy Centered Header) */}
@@ -35,34 +67,16 @@ export function AcademicMinimalistTemplate({ data }: TemplateProps) {
           </p>
         )}
         
-        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-gray-700 mt-2 font-sans">
-          {personalInfo.email && (
-            <span>
-              <a href={`mailto:${personalInfo.email}`} className="hover:underline">
-                {personalInfo.email}
-              </a>
-            </span>
-          )}
-          {personalInfo.phone && <span>• {personalInfo.phone}</span>}
-          {personalInfo.location && <span>• {personalInfo.location}</span>}
-          {personalInfo.website && (
-            <span>
-              •{" "}
-              <a href={personalInfo.website} target="_blank" rel="noreferrer" className="hover:underline">
-                {personalInfo.website.replace(/^https?:\/\//, "")}
-              </a>
-            </span>
-          )}
-          {personalInfo.linkedin && (
-            <span>
-              •{" "}
-              <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="hover:underline">
-                LinkedIn
-              </a>
-            </span>
-          )}
-          {personalInfo.orcid && <span>• ORCID: {personalInfo.orcid}</span>}
-        </div>
+        {contactItems.length > 0 && (
+          <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-xs text-gray-700 mt-2 font-sans">
+            {contactItems.map((item, idx) => (
+              <React.Fragment key={idx}>
+                {idx > 0 && <span className="text-gray-400 select-none">•</span>}
+                <span className="inline-flex items-center whitespace-nowrap">{item}</span>
+              </React.Fragment>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Summary / Research Statement */}

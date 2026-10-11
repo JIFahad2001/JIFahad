@@ -27,9 +27,12 @@ export function CvPreview({ data }: CvPreviewProps) {
   };
 
   return (
-    <div className="flex flex-col h-full bg-slate-100/90 dark:bg-zinc-900/40 rounded-xl border border-border overflow-hidden">
-      {/* Zoom and Preview Toolbar */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-background border-b border-border text-xs">
+    <div
+      id="cv-preview-card"
+      className="flex flex-col h-full bg-slate-100/90 dark:bg-zinc-900/40 rounded-xl border border-border overflow-hidden print:border-none print:shadow-none print:bg-white print:rounded-none print:h-auto print:overflow-visible print:block"
+    >
+      {/* Zoom and Preview Toolbar - Strictly hidden when printing */}
+      <div className="flex items-center justify-between px-4 py-2.5 bg-background border-b border-border text-xs print:hidden">
         <div className="flex items-center gap-2">
           <span className="font-semibold text-foreground">Live Document Preview</span>
           <span className="text-[11px] px-2 py-0.5 rounded-full bg-muted/15 text-muted">
@@ -72,7 +75,10 @@ export function CvPreview({ data }: CvPreviewProps) {
       </div>
 
       {/* Preview Canvas Area */}
-      <div id="preview-canvas-container" className="flex-1 overflow-auto p-4 sm:p-8 flex justify-center items-start">
+      <div
+        id="preview-canvas-container"
+        className="flex-1 overflow-auto p-4 sm:p-8 flex justify-center items-start print:p-0 print:m-0 print:overflow-visible print:block print:h-auto print:min-h-0"
+      >
         <div
           id="cv-print-area"
           style={{
@@ -80,7 +86,7 @@ export function CvPreview({ data }: CvPreviewProps) {
             transformOrigin: "top center",
             transition: "transform 0.15s ease-out",
           }}
-          className="w-full max-w-[210mm] min-h-[297mm] bg-white text-zinc-900 shadow-xl rounded-sm print:shadow-none print:transform-none print:m-0 print:p-0 print:w-full print:max-w-none transition-shadow"
+          className="w-full max-w-[210mm] min-h-[297mm] bg-white text-zinc-900 shadow-xl rounded-sm print:shadow-none print:m-0 print:p-0 print:w-full print:max-w-none print:min-h-0 print:h-auto print:border-none transition-shadow"
         >
           {renderTemplate()}
         </div>

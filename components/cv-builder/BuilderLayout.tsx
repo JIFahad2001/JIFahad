@@ -55,7 +55,18 @@ export function BuilderLayout() {
 
   // PDF Export via native print styling
   const handleExportPdf = () => {
-    window.print();
+    if (mobileTab !== "preview") {
+      setMobileTab("preview");
+    }
+
+    const originalTitle = document.title;
+    const cleanName = cvData.personalInfo.fullName.trim() || "Academic_CV";
+    document.title = `${cleanName.replace(/\s+/g, "_")}`;
+
+    setTimeout(() => {
+      window.print();
+      document.title = originalTitle;
+    }, 150);
   };
 
   // JSON Export
@@ -137,7 +148,7 @@ export function BuilderLayout() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-4rem)] overflow-hidden">
+    <div className="flex flex-col h-[calc(100vh-4rem)] overflow-hidden print:h-auto print:overflow-visible print:block">
       {/* Top Action Bar */}
       <div id="builder-controls" className="shrink-0 border-b border-border bg-card/60 backdrop-blur px-4 sm:px-6 py-2.5 print:hidden">
         <div className="container mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
@@ -272,7 +283,7 @@ export function BuilderLayout() {
           {/* Right Pane: Live Document Preview */}
           <div
             id="preview-pane"
-            className={`lg:col-span-6 h-full min-h-0 ${
+            className={`lg:col-span-6 h-full min-h-0 print:block ${
               mobileTab === "preview" ? "block" : "hidden lg:block"
             }`}
           >

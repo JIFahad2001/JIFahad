@@ -91,24 +91,38 @@ main {
   }
 }
 
-/* Bulletproof Print Rules for PDF Exports */
+/* Bulletproof Print Rules for Clean ATS-Ready PDF Exports */
 @media print {
   @page {
     size: A4 portrait;
-    margin: 8mm 10mm;
+    margin: 10mm 12mm;
+  }
+
+  *, *:before, *:after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  :root, .dark {
+    --background: #ffffff !important;
+    --foreground: #111827 !important;
+    --card: #ffffff !important;
+    --card-foreground: #111827 !important;
+    --border: transparent !important;
   }
 
   html, body {
     margin: 0 !important;
     padding: 0 !important;
     background: #ffffff !important;
-    color: #000000 !important;
+    color: #111827 !important;
     height: auto !important;
     min-height: auto !important;
+    max-height: none !important;
     overflow: visible !important;
   }
 
-  /* Completely hide all UI elements outside the CV document */
+  /* Completely hide all UI navigation, editing controls, and headers */
   .site-header,
   .site-footer,
   #builder-controls,
@@ -122,12 +136,19 @@ main {
     display: none !important;
   }
 
-  /* Reset all outer containers so nothing is constrained or clipped */
+  /* Ensure preview container is always visible in print even on mobile */
+  #preview-pane {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  /* Reset all outer containers so nothing is constrained, clipped, or bordered */
   body > div,
   main,
   #builder-workspace,
   #builder-grid,
   #preview-pane,
+  #cv-preview-card,
   #preview-canvas-container {
     height: auto !important;
     min-height: auto !important;
@@ -137,8 +158,9 @@ main {
     padding: 0 !important;
     margin: 0 !important;
     border: none !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
-    background: transparent !important;
+    background: #ffffff !important;
   }
 
   /* The actual CV paper container */
@@ -156,16 +178,27 @@ main {
     margin: 0 !important;
     padding: 0 !important;
     background: #ffffff !important;
-    color: #000000 !important;
+    color: #111827 !important;
   }
 
   #cv-print-area * {
     visibility: visible !important;
   }
 
-  #cv-print-area .cv-header,
-  #cv-print-area .cv-header * {
-    display: block !important;
-    visibility: visible !important;
+  /* Avoid orphan headers and awkward page breaks inside CV sections and items */
+  #cv-print-area .cv-header {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  #cv-print-area section {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  #cv-print-area section > div > div,
+  #cv-print-area section [class*="space-y"] > div {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
   }
 }

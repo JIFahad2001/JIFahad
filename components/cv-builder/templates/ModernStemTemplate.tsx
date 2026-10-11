@@ -40,25 +40,30 @@ export function ModernStemTemplate({ data }: TemplateProps) {
               </p>
             )}
           </div>
-          <div className="flex flex-col text-xs text-slate-600 sm:items-end space-y-0.5">
+          <div className="flex flex-col text-xs text-slate-600 sm:items-end space-y-1">
             {personalInfo.email && (
-              <span className="flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-slate-400" />
+              <span className="flex items-center gap-1.5 whitespace-nowrap">
+                <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 <a href={`mailto:${personalInfo.email}`} className="hover:underline text-slate-700">
                   {personalInfo.email}
                 </a>
               </span>
             )}
             {personalInfo.phone && (
-              <span className="flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5 text-slate-400" />
+              <span className="flex items-center gap-1.5 whitespace-nowrap">
+                <Phone className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 <span>{personalInfo.phone}</span>
               </span>
             )}
             {personalInfo.location && (
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-slate-400" />
+              <span className="flex items-center gap-1.5 whitespace-nowrap">
+                <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 <span>{personalInfo.location}</span>
+              </span>
+            )}
+            {personalInfo.orcid && (
+              <span className="flex items-center gap-1.5 whitespace-nowrap text-[11px] text-slate-500">
+                <span>ORCID: {personalInfo.orcid}</span>
               </span>
             )}
           </div>
@@ -68,14 +73,14 @@ export function ModernStemTemplate({ data }: TemplateProps) {
         {(personalInfo.website || personalInfo.linkedin) && (
           <div className="flex flex-wrap items-center gap-4 mt-2.5 pt-2 border-t border-slate-100 text-xs text-slate-500">
             {personalInfo.website && (
-              <a href={personalInfo.website} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-slate-800 transition-colors">
-                <Globe className="w-3.5 h-3.5 text-slate-400" />
+              <a href={personalInfo.website} target="_blank" rel="noreferrer" className="flex items-center gap-1 whitespace-nowrap hover:text-slate-800 transition-colors">
+                <Globe className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 <span>{personalInfo.website.replace(/^https?:\/\//, "")}</span>
               </a>
             )}
             {personalInfo.linkedin && (
-              <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-slate-800 transition-colors">
-                <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+              <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1 whitespace-nowrap hover:text-slate-800 transition-colors">
+                <ExternalLink className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 <span>LinkedIn Profile</span>
               </a>
             )}

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function CvBuilderPage() {
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background min-h-screen print:min-h-0 print:bg-white">
       <BuilderLayout />
     </div>
   );
