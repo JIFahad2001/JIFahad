@@ -33,15 +33,6 @@ export default function CV() {
             <ExternalLink className="mr-2 h-4 w-4" />
             View Original!
           </a>
-          <a 
-            href="/documents/Fahad_CV.html" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
-          >
-            <FilePlus2 className="mr-2 h-4 w-4" />
-            Build Your CV
-          </a>
         </div>
       </div>
 
