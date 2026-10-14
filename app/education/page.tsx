@@ -264,23 +264,23 @@ export default function EducationPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-foreground/85 bg-muted/5 p-4 rounded-xl border border-border/60 mb-4">
                 <div>
                   <p className="font-semibold text-foreground">Discipline / Group:</p>
-                  <p className="text-muted mt-0.5">Science</p>
+                  <p className="text-muted mt-0.5">{sscDegree.fieldOfStudy}</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">Status / Verification:</p>
-                  <p className="text-muted mt-0.5">SSC result that I could not attach here (Verified on record)</p>
+                  <p className="font-semibold text-foreground">Final Result:</p>
+                  <p className="text-muted mt-0.5">{sscDegree.grade} (EQF Level 2)</p>
                 </div>
               </div>
 
               <div>
                 <a
-                  href="/documents/SSC_Result.pdf"
+                  href="/documents/SSC_Result_Certificate_2018.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-accent/20 hover:bg-accent/30 text-foreground text-xs font-semibold transition-colors"
                 >
                   <FileText className="w-3.5 h-3.5" />
-                  <span>View SSC Examination Record Notice (PDF)</span>
+                  <span>View SSC Examination Result & Marksheet (PDF)</span>
                   <ExternalLink className="w-3 h-3 opacity-70" />
                 </a>
               </div>

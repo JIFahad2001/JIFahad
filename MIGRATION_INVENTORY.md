@@ -10,7 +10,7 @@
 | DU 3rd Year Transcript | Attached PDF (2023) | 3rd Year B.S. (Hons.) Exam Transcript (GPA 3.38, CGPA 3.46) | `/documents/DU_BS_3rd_Year_Transcript_2023.pdf` | Migrated | University of Dhaka official exam archive |
 | DU 4th Year Transcript | Attached PDF (2024) | 4th Year B.S. (Hons.) Final Exam Transcript (CGPA 3.44) | `/documents/DU_BS_4th_Year_Transcript_2024.pdf` | Migrated | University of Dhaka degree result archive |
 | HSC Result Marksheet | Attached PDF (2020) | Higher Secondary Certificate Result (GPA 5.00) | `/documents/HSC_Result_Certificate_2020.pdf` | Migrated | Govt. Tolaram College / Education Board |
-| SSC Result Record | User Note | Secondary School Certificate Result Record | `/documents/SSC_Result.pdf` | Migrated | Narayanganj High School and College record notice |
+| SSC Result Marksheet | Attached PDF (2018) | Secondary School Certificate Result (GPA 5.00) | `/documents/SSC_Result_Certificate_2018.pdf` | Migrated | Narayanganj High School & College / Education Board |
 | Works > Articles | /view/jifahad/works/articles | Various articles | Works | Migrated | |
 | Soil Health | /view/jifahad/works/articles/soil-health | Article about Soil Health | Works | Migrated | |
 | PCOS | /view/jifahad/works/articles/pcos | Article about PCOS | Works | Migrated | |

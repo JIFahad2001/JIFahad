@@ -98,15 +98,16 @@ export const academicDocuments: AcademicDocument[] = [
   },
   {
     id: "doc-ssc",
-    title: "Secondary School Certificate (SSC) Result & Record (2018)",
-    type: "result",
-    institution: "Narayanganj High School and College",
+    title: "Secondary School Certificate (SSC) Result & Marksheet (2018)",
+    type: "certificate",
+    institution: "Narayanganj High School & College",
     degreeOrExam: "Secondary School Certificate (SSC) - Dhaka Board",
     year: "2018",
-    fileUrl: "/documents/SSC_Result.pdf",
-    fileSize: "Official Record Notice",
-    status: "available_on_request",
-    note: "SSC result that I could not attach here. Official academic certificate and marksheet are verified on record and available upon request."
+    gpa: "5.00 / 5.00",
+    fileUrl: "/documents/SSC_Result_Certificate_2018.pdf",
+    fileSize: "113 KB",
+    status: "verified",
+    note: "Science group result publication record from Education Board: GPA 5.00."
   }
 ];
 
@@ -143,6 +144,7 @@ export const educationData: Education[] = [
     startDate: "Jan 2016",
     endDate: "Mar 2018",
     fieldOfStudy: "Science",
+    grade: "GPA: 5.00 / 5.00",
     documents: academicDocuments.filter((d) => d.id === "doc-ssc")
   }
 ];
