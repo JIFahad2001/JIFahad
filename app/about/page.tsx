@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { FileText, ExternalLink, ArrowRight } from "lucide-react";
 import { profileData } from "@/content/profile";
 import { educationData } from "@/content/education";
 
@@ -23,7 +25,16 @@ export default function About() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-foreground mb-6">Education</h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-foreground">Education</h2>
+              <Link
+                href="/education"
+                className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+              >
+                <span>View All Transcripts</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
             <div className="space-y-6">
               {educationData.map((edu) => (
                 <div key={edu.id} className="relative pl-6 border-l-2 border-accent">
@@ -48,6 +59,25 @@ export default function About() {
                     <p className="text-sm text-foreground/80 mt-1">
                       <span className="font-semibold">Final grade:</span> {edu.grade}
                     </p>
+                  )}
+
+                  {edu.documents && edu.documents.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {edu.documents.map((doc) => (
+                        <a
+                          key={doc.id}
+                          href={doc.fileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-primary/10 hover:bg-primary/20 text-primary text-xs font-medium transition-colors"
+                          title={doc.title}
+                        >
+                          <FileText className="w-3.5 h-3.5" />
+                          <span>{doc.year ? `${doc.year} ` : ""}{doc.type === "transcript" ? "Transcript" : "Certificate/Result"}</span>
+                          <ExternalLink className="w-3 h-3 opacity-70" />
+                        </a>
+                      ))}
+                    </div>
                   )}
                 </div>
               ))}

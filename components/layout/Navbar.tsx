@@ -16,6 +16,7 @@ export function cn(...inputs: ClassValue[]) {
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
+  { name: "Education", href: "/education" },
   { name: "CV", href: "/cv" },
   { name: "CV Builder", href: "/cv-builder" },
   { name: "Works", href: "/works" },

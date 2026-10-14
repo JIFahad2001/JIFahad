@@ -44,7 +44,16 @@ export default function CV() {
 
         <div className="space-y-10">
           <section>
-            <h3 className="text-xl font-bold text-primary mb-4 border-b border-muted/20 pb-2">Education</h3>
+            <div className="flex items-center justify-between border-b border-muted/20 pb-2 mb-4">
+              <h3 className="text-xl font-bold text-primary">Education</h3>
+              <Link
+                href="/education"
+                className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1"
+              >
+                <span>Official Transcripts</span>
+                <ExternalLink className="w-3 h-3" />
+              </Link>
+            </div>
             <div className="space-y-6">
               {educationData.map((edu) => (
                 <div key={edu.id}>
@@ -54,6 +63,23 @@ export default function CV() {
                   </div>
                   <p className="font-medium text-foreground/80">{edu.institution}, {edu.location}</p>
                   {edu.fieldOfStudy && <p className="text-sm text-foreground/80 mt-1">Field of study: {edu.fieldOfStudy}</p>}
+                  {edu.grade && <p className="text-xs text-muted font-medium mt-0.5">{edu.grade}</p>}
+                  {edu.documents && edu.documents.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {edu.documents.map((doc) => (
+                        <a
+                          key={doc.id}
+                          href={doc.fileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-muted/10 hover:bg-muted/20 text-xs font-medium text-foreground/90 transition-colors"
+                        >
+                          <span>{doc.year ? `${doc.year} ` : ""}{doc.type === "transcript" ? "Transcript" : "Certificate/Result"}</span>
+                          <ExternalLink className="w-2.5 h-2.5 opacity-70" />
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
